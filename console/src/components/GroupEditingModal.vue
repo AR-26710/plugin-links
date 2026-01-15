@@ -108,7 +108,7 @@ onMounted(() => {
         </div>
         <div class=":uno: mt-5 md:col-span-3 md:mt-0 divide-y divide-gray-100">
           <FormKit name="displayName" label="分组名称" type="text" validation="required"></FormKit>
-          <FormKit name="hidden" label="隐藏" type="checkbox"></FormKit>
+          <FormKit name="hidden" label="隐藏分组" type="checkbox"></FormKit>
         </div>
       </div>
     </FormKit>

@@ -162,7 +162,7 @@ const handleGetLinkDetail = async () => {
           <FormKit type="text" name="displayName" validation="required" label="网站名称"></FormKit>
           <FormKit type="attachment" name="logo" label="Logo"></FormKit>
           <FormKit type="textarea" name="description" label="描述"></FormKit>
-          <FormKit type="checkbox" name="hidden" label="隐藏"></FormKit>
+          <FormKit type="checkbox" name="hidden" label="隐藏链接"></FormKit>
         </div>
       </div>
     </FormKit>
