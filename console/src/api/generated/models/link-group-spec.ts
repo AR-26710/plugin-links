@@ -27,6 +27,12 @@ export interface LinkGroupSpec {
      */
     'displayName': string;
     /**
+     * 
+     * @type {boolean}
+     * @memberof LinkGroupSpec
+     */
+    'hidden'?: boolean;
+    /**
      * Names of links below this group.
      * @type {Array<string>}
      * @memberof LinkGroupSpec

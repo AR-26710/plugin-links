@@ -140,6 +140,11 @@ function onEditingModalClose() {
                     <VStatusDot v-tooltip="`删除中`" state="warning" animate />
                   </template>
                 </VEntityField>
+                <VEntityField v-if="group.spec?.hidden">
+                  <template #description>
+                    <VStatusDot v-tooltip="`已隐藏`" state="default" />
+                  </template>
+                </VEntityField>
               </template>
 
               <template #dropdownItems>

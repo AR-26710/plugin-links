@@ -40,6 +40,12 @@ export interface LinkSpec {
     'groupName'?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof LinkSpec
+     */
+    'hidden'?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof LinkSpec
      */
