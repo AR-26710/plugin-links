@@ -2,10 +2,10 @@
   "openapi" : "3.0.1",
   "info" : {
     "title" : "Halo",
-    "version" : "2.17.2"
+    "version" : "2.22.5"
   },
   "servers" : [ {
-    "url" : "http://localhost:31788",
+    "url" : "http://localhost:33363",
     "description" : "Generated server url"
   } ],
   "security" : [ {
@@ -542,6 +542,93 @@
         },
         "tags" : [ "LinkV1alpha1" ]
       }
+    },
+    "/apis/plugin-links.halo.run/v1alpha1/console/links" : {
+      "get" : {
+        "description" : "Lists all links for console management (including hidden links)",
+        "operationId" : "listLinksForConsole",
+        "parameters" : [ {
+          "description" : "Keyword to search links under the group",
+          "in" : "query",
+          "name" : "keyword",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "Link group name",
+          "in" : "query",
+          "name" : "groupName",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "description" : "Filter by hidden status (true/false)",
+          "in" : "query",
+          "name" : "hidden",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "description" : "Page number. Default is 0.",
+          "in" : "query",
+          "name" : "page",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "description" : "Size number. Default is 0.",
+          "in" : "query",
+          "name" : "size",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "description" : "Label selector. e.g.: hidden!=true",
+          "in" : "query",
+          "name" : "labelSelector",
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }, {
+          "description" : "Field selector. e.g.: metadata.name==halo",
+          "in" : "query",
+          "name" : "fieldSelector",
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }, {
+          "description" : "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+          "in" : "query",
+          "name" : "sort",
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LinkList"
+                }
+              }
+            },
+            "description" : "default response"
+          }
+        },
+        "tags" : [ "plugin-links.halo.run/v1alpha1/ConsoleLink" ]
+      }
     }
   },
   "components" : {
@@ -624,7 +711,8 @@
           "spec" : {
             "$ref" : "#/components/schemas/LinkSpec"
           }
-        }
+        },
+        "description" : "A chunk of items."
       },
       "LinkDetailDTO" : {
         "required" : [ "title" ],
@@ -718,6 +806,9 @@
           "displayName" : {
             "type" : "string"
           },
+          "hidden" : {
+            "type" : "boolean"
+          },
           "links" : {
             "type" : "array",
             "description" : "Names of links below this group.",
@@ -796,6 +887,9 @@
           "groupName" : {
             "type" : "string"
           },
+          "hidden" : {
+            "type" : "boolean"
+          },
           "logo" : {
             "type" : "string"
           },
@@ -816,15 +910,18 @@
             "type" : "object",
             "additionalProperties" : {
               "type" : "string"
-            }
+            },
+            "description" : "Annotations are like key-value format."
           },
           "creationTimestamp" : {
             "type" : "string",
+            "description" : "Creation timestamp of the Extension.",
             "format" : "date-time",
             "nullable" : true
           },
           "deletionTimestamp" : {
             "type" : "string",
+            "description" : "Deletion timestamp of the Extension.",
             "format" : "date-time",
             "nullable" : true
           },
@@ -845,7 +942,8 @@
             "type" : "object",
             "additionalProperties" : {
               "type" : "string"
-            }
+            },
+            "description" : "Labels are like key-value format."
           },
           "name" : {
             "type" : "string",
@@ -853,10 +951,12 @@
           },
           "version" : {
             "type" : "integer",
+            "description" : "Current version of the Extension. It will be bumped up every update.",
             "format" : "int64",
             "nullable" : true
           }
-        }
+        },
+        "description" : "Metadata of Extension."
       },
       "MoveOperation" : {
         "required" : [ "op", "from", "path" ],

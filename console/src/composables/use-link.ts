@@ -11,7 +11,7 @@ export function useLinkFetch(page: Ref<number>, size: Ref<number>, keyword?: Ref
   const { isLoading, refetch } = useQuery({
     queryKey: ["links", page, size, group, keyword],
     queryFn: async () => {
-      const { data } = await linksConsoleApiClient.link.listLinks({
+      const { data } = await linksConsoleApiClient.consoleLink.listLinksForConsole({
         page: page.value,
         size: size.value,
         keyword: keyword?.value,

@@ -5,6 +5,7 @@ api.ts
 api/api-plugin-halo-run-v1alpha1-link-api.ts
 api/link-group-v1alpha1-api.ts
 api/link-v1alpha1-api.ts
+api/plugin-links-halo-run-v1alpha1-console-link-api.ts
 base.ts
 common.ts
 configuration.ts

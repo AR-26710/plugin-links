@@ -60,7 +60,7 @@ const handleDelete = async (group: LinkGroup) => {
       try {
         await linksCoreApiClient.group.deleteLinkGroup({ name: group.metadata.name });
 
-        const { data } = await linksConsoleApiClient.link.listLinks({
+        const { data } = await linksConsoleApiClient.consoleLink.listLinksForConsole({
           page: 0,
           size: 0,
           groupName: group.metadata.name,
